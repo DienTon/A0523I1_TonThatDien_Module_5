@@ -1,11 +1,20 @@
 import axios from "axios";
 
 export const getAllBooks = async() =>{
+        try {
+          const res = await axios.get("http://localhost:3001/books");
+          console.log(res.data);
+          return res.data;
+        } catch (error) {
+          console.error(error);
+        }
+};
+
+export const addNewBooks = async(book) =>{
     try {
-        const res = await axios.get("http://localhost:3000/books")
-        console.log(res)
-        return res.data;
+        await axios.post("http://localhost:3001/books/create",book);
+        return true;
     } catch (error) {
-        console.log(error)
+        return false;
     }
 }
