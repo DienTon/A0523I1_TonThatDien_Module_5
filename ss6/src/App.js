@@ -3,7 +3,10 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import BookList from './component/bookList';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import BookCreate from './component/bookCreate';
+import BookEdit from './component/editBook';
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -11,8 +14,12 @@ function App() {
     <BrowserRouter>
        <Routes>
          <Route path="/books" element={<BookList />}></Route>
+         <Route path="/books/create" element={<BookCreate />}></Route>
+         <Route path='/books/edit/:id'  element={<BookEdit />}></Route>
        </Routes>
-     </BrowserRouter></>
+     </BrowserRouter>
+     <ToastContainer />
+     </>
   );
 }
 
