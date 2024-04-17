@@ -1,0 +1,79 @@
+{
+  "dich_vu": [
+    {
+      "ten": "Villa A",
+      "dien_tich_su_dung": "300m2",
+      "chi_phi_thue": "$1000",
+      "so_luong_nguoi_toi_da": 10,
+      "kieu_thue": ["năm", "tháng", "ngày", "giờ"],
+      "tieuchuan_phong": "Luxury",
+      "mo_ta_tien_nghi_khac": ["Spa", "Gym", "BBQ area"],
+      "dien_tich_ho_boi": "50m2",
+      "so_tang": 2
+    },
+    {
+      "ten": "House B",
+      "dien_tich_su_dung": "150m2",
+      "chi_phi_thue": "$500",
+      "so_luong_nguoi_toi_da": 6,
+      "kieu_thue": ["năm", "tháng", "ngày", "giờ"],
+      "tieuchuan_phong": "Standard",
+      "mo_ta_tien_nghi_khac": ["Garden", "Parking space"],
+      "so_tang": 1
+    },
+    {
+      "ten": "Phòng C",
+      "dien_tich_su_dung": "30m2",
+      "chi_phi_thue": "$50",
+      "so_luong_nguoi_toi_da": 2,
+      "kieu_thue": ["năm", "tháng", "ngày", "giờ"],
+      "dich_vu_mien_phi_di_kem": ["Wifi", "Điều hòa"]
+    }
+  ],
+  "nhan_vien": [
+    {
+      "ho_ten": "Nguyen Van A",
+      "ngay_sinh": "1990-01-01",
+      "so_CMND": "123456789",
+      "so_Dien_Thoai": "0123456789",
+      "email": "vana@example.com",
+      "trinh_do": "Đại học",
+      "vi_tri": "Lễ tân",
+      "luong": "$1500",
+      "bo_phan_lam_viec": "Sale – Marketing"
+    },
+    {
+      "ho_ten": "Tran Thi B",
+      "ngay_sinh": "1985-05-05",
+      "so_CMND": "987654321",
+      "so_Dien_Thoai": "0987654321",
+      "email": "thib@example.com",
+      "trinh_do": "Cao đẳng",
+      "vi_tri": "Phục vụ",
+      "luong": "$1200",
+      "bo_phan_lam_viec": "Phục vụ"
+    }
+  ],
+  "khach_hang": [
+    {
+      "ho_ten": "Le Van C",
+      "ngay_sinh": "1988-08-08",
+      "gioi_tinh": "Nam",
+      "so_CMND": "456789123",
+      "so_Dien_Thoai": "0369852147",
+      "email": "levanc@example.com",
+      "loai_khach": "Gold",
+      "dia_chi": "123 ABC Street, XYZ City"
+    },
+    {
+      "ho_ten": "Pham Thi D",
+      "ngay_sinh": "1995-03-15",
+      "gioi_tinh": "Nữ",
+      "so_CMND": "321654987",
+      "so_Dien_Thoai": "0987412365",
+      "email": "phamd@example.com",
+      "loai_khach": "Silver",
+      "dia_chi": "456 XYZ Street, ABC City"
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getAllBooks = async () => {
   try {
-    const res = await axios.get("http://localhost:3001/books");
+    const res = await axios.get("http://localhost:3002/books");
     console.log(res.data);
     return res.data;
   } catch (error) {
@@ -12,7 +12,7 @@ export const getAllBooks = async () => {
 
 export const addNewBooks = async (book) => {
   try {
-    await axios.post("http://localhost:3001/books ", book);
+    await axios.post("http://localhost:3002/books ", book);
     return true;
   } catch (error) {
     return false;
@@ -21,16 +21,16 @@ export const addNewBooks = async (book) => {
 
 export const deleteBooks = async (id) => {
   try {
-    await axios.delete("http://localhost:3001/books/" + id);
+    await axios.delete("http://localhost:3002/books/" + id);
     return true;
   } catch (error) {
     return false;
   }
 };
 
-export const updateBooks = async (book) => {
+export const updateBooks = async (id, book) => {
   try {
-    await axios.post("http://localhost:3001/books", book);
+    await axios.put(`http://localhost:3002/books/${id}`, book);
     return true;
   } catch (error) {
     return false;
@@ -39,7 +39,17 @@ export const updateBooks = async (book) => {
 
 export const findById = async (id) => {
   try {
-    const res = await axios.get("http://localhost:3001/books/" + id);
+    const res = await axios.get("http://localhost:3002/books/" + id);
+    console.log(res.data);
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const findByName = async (name) => {
+  try {
+    const res = await axios.get(`http://localhost:3002/books/${name}`);
     console.log(res.data);
     return res.data;
   } catch (error) {

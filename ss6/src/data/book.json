@@ -14,9 +14,9 @@
     },
     {
       "id": "3",
-      "name": "1984",
-      "author": "George Orwell",
-      "price": 9.99
+      "name": "A0523I1_Tôn Thất Diễn",
+      "author": "ádasdasd",
+      "price": "123"
     },
     {
       "id": "4",
@@ -27,8 +27,8 @@
     {
       "id": "8",
       "name": "A0523I1_Tôn Thất Diễn",
-      "author": "okman",
-      "price": "123"
+      "author": "123",
+      "price": "222"
     }
   ]
 }
