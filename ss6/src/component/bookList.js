@@ -23,13 +23,15 @@ function BookList(props) {
   
   useEffect(() => {
       getAll();
-    
   }, [searchTerm]);
 
 
   const getAll = async () => {
     const response = await bookService.getAllBooks();
-    const result = response.filter((book) => book.name.includes(searchTerm)); // search by name
+    const result = response.filter((book) => {
+      // Chuyển đổi cả tên sách và từ khóa tìm kiếm sang chữ thường và so sánh
+      return book.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
     setBookList(result);
   };
 
