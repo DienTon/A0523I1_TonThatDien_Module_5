@@ -61,6 +61,7 @@ function BookEdit() {
       <Formik
         initialValues={book}
         onSubmit={editBook}
+        key={book.id}
       >
         <Form>
           {/* Các trường input */}

@@ -1,0 +1,85 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "name": "Villa A",
+      "area": "300m2",
+      "rental_price": "$1000",
+      "max_capacity": 10,
+      "rental_types": ["year", "month", "day", "hour"],
+      "room_standard": "Luxury",
+      "other_facilities": ["Spa", "Gym", "BBQ area"],
+      "pool_area": "50m2",
+      "floors": 2,
+      "image": "https://www.cet.edu.vn/wp-content/uploads/2019/02/villa-khong-gian-sang-trong.jpg"
+    },
+    {
+      "id": 2,
+      "name": "House B",
+      "area": "150m2",
+      "rental_price": "$500",
+      "max_capacity": 6,
+      "rental_types": ["year", "month", "day", "hour"],
+      "room_standard": "Standard",
+      "other_facilities": ["Garden", "Parking space"],
+      "floors": 1,
+      "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/365823894.jpg?k=bfb875a58761273d9b75eba381a1d0eab3376ca3a4342b7441438db8a69bd685&o=&hp=1"
+    },
+    {
+      "id": 3,
+      "name": "Room C",
+      "area": "30m2",
+      "rental_price": "$50",
+      "max_capacity": 2,
+      "rental_types": ["year", "month", "day", "hour"],
+      "free_services": ["Wifi", "Air conditioning"],
+      "image": "https://www.thespruce.com/thmb/iMt63n8NGCojUETr6-T8oj-5-ns=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/PAinteriors-7-cafe9c2bd6be4823b9345e591e4f367f.jpg"
+    }
+  ],
+  "employees": [
+    {
+      "full_name": "Nguyen Van A",
+      "date_of_birth": "1990-01-01",
+      "id_card_number": "123456789",
+      "phone_number": "0123456789",
+      "email": "vana@example.com",
+      "qualification": "Bachelor",
+      "position": "Receptionist",
+      "salary": "$1500",
+      "department": "Sale – Marketing"
+    },
+    {
+      "full_name": "Tran Thi B",
+      "date_of_birth": "1985-05-05",
+      "id_card_number": "987654321",
+      "phone_number": "0987654321",
+      "email": "thib@example.com",
+      "qualification": "College",
+      "position": "Server",
+      "salary": "$1200",
+      "department": "Service"
+    }
+  ],
+  "customers": [
+    {
+      "full_name": "Le Van C",
+      "date_of_birth": "1988-08-08",
+      "gender": "Male",
+      "id_card_number": "456789123",
+      "phone_number": "0369852147",
+      "email": "levanc@example.com",
+      "customer_type": "Gold",
+      "address": "123 ABC Street, XYZ City"
+    },
+    {
+      "full_name": "Pham Thi D",
+      "date_of_birth": "1995-03-15",
+      "gender": "Female",
+      "id_card_number": "321654987",
+      "phone_number": "0987412365",
+      "email": "phamd@example.com",
+      "customer_type": "Silver",
+      "address": "456 XYZ Street, ABC City"
+    }
+  ]
+}
