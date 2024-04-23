@@ -20,17 +20,18 @@ function BookList(props) {
       transform: "translate(-50%, -50%)",
     },
   };
-  
-  useEffect(() => {
-      getAll();
-  }, [searchTerm]);
 
+  useEffect(() => {
+    getAll();
+  }, [searchTerm]);
 
   const getAll = async () => {
     const response = await bookService.getAllBooks();
     const result = response.filter((book) => {
-      // Chuyển đổi cả tên sách và từ khóa tìm kiếm sang chữ thường và so sánh
-      return book.name.toLowerCase().includes(searchTerm.toLowerCase());
+      if (book && book.name) {
+        // Chuyển đổi cả tên sách và từ khóa tìm kiếm sang chữ thường và so sánh
+        return book.name.toLowerCase().includes(searchTerm.toLowerCase());
+      }
     });
     setBookList(result);
   };
@@ -55,7 +56,7 @@ function BookList(props) {
       <input
         type="text"
         placeholder="Tìm kiếm theo tên sách"
-        onChange={(e) => setSearchTerm(e.target.value || '')}
+        onChange={(e) => setSearchTerm(e.target.value || "")}
       />
       <table className="table table-hover">
         <thead>

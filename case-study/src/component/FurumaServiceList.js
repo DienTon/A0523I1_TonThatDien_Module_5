@@ -24,6 +24,8 @@ function FurumaServiceList() {
 
   return (
     <>
+    <Link to="/services/create"><button className="btn btn-primary">Add New Service</button></Link>
+      <a className="nav-link" hre>
       <table style={{ width: "100%", borderSpacing: "10px" }}>
         <tbody>
           <tr
@@ -70,6 +72,7 @@ function FurumaServiceList() {
           </tr>
         </tbody>
       </table>
+      </a>
     </>
   );
 }

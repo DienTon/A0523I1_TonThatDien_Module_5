@@ -54,7 +54,7 @@ function BookCreate() {
         onSubmit={createBook}
         validationSchema={Yup.object(validateBook)}
       >
-        <Form>
+        <Form className="form-group">
           Id: <Field name="id" />
           <br></br>
           <ErrorMessage name="id" component="p"></ErrorMessage>

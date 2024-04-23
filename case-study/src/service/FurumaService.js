@@ -7,6 +7,15 @@ export const getAllDichVu = async () => {
         return res.data;
     } catch (error) {
         console.error(error);
+    }                                                                       
+}
+
+export const addNewDichVu = async (service) => {
+    try {
+        await axios.post("http://localhost:3001/services", service);
+        return true;
+    } catch (error) {
+        return false;
     }
 }
 

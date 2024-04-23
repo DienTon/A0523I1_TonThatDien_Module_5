@@ -20,9 +20,15 @@
     },
     {
       "id": "8",
-      "name": "A0523I1_Tôn Thất Diễn",
+      "name": "A0523I1_Tôn Thất ",
       "author": "123",
       "price": "222"
+    },
+    {
+      "id": "6999",
+      "name": "123123",
+      "author": "123123",
+      "price": "12"
     }
   ]
 }
