@@ -9,7 +9,9 @@ function BookList(props) {
   const [bookList, setBookList] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [bookDelete, setBookDelete] = useState({});
-  const [searchTerm, setSearchTerm] = useState(""); // State lưu trữ giá trị của ô tìm kiếm
+  const [searchName, setSearchName] = useState("");
+  const [searchAuthor, setSearchAuthor] = useState("");
+  const [searchCategory, setSearchCategory] = useState("");
   const customStyles = {
     content: {
       top: "30%",
@@ -20,20 +22,41 @@ function BookList(props) {
       transform: "translate(-50%, -50%)",
     },
   };
+  const [categories, setCategories] = useState();
 
   useEffect(() => {
     getAll();
-  }, [searchTerm]);
+    getAllCategories();
+  }, [searchName, searchAuthor, searchCategory]);
 
   const getAll = async () => {
     const response = await bookService.getAllBooks();
     const result = response.filter((book) => {
-      if (book && book.name) {
-        // Chuyển đổi cả tên sách và từ khóa tìm kiếm sang chữ thường và so sánh
-        return book.name.toLowerCase().includes(searchTerm.toLowerCase());
-      }
+      // Kiểm tra tên sách
+      const matchesName =
+        searchName === "" ||
+        book.name.toLowerCase().includes(searchName.toLowerCase());
+      // Kiểm tra tác giả
+      const matchesAuthor =
+        searchAuthor === "" ||
+        book.author.toLowerCase().includes(searchAuthor.toLowerCase());
+      // Kiểm tra thể loại sách
+      const matchesCategory =
+        searchCategory === "" ||
+        book.category.name.toLowerCase().includes(searchCategory.toLowerCase());
+
+      // Trả về true nếu tất cả các điều kiện đều đúng
+      return matchesName && matchesAuthor && matchesCategory;
     });
     setBookList(result);
+  };
+  const getAllCategories = async () => {
+    try {
+      const foundCategory = await bookService.getAllCategories();
+      setCategories(foundCategory);
+    } catch (error) {
+      console.error("Error fetching category:", error);
+    }
   };
 
   const deleteBooks = async () => {
@@ -52,12 +75,38 @@ function BookList(props) {
 
   return (
     <>
-      <Link to="/books/create">Thêm mới</Link>
+    <h1 style={{textAlign: 'center'}}>List book</h1>
+    <div style={{marginBottom:'20px',marginTop:'20px'}}>
       <input
+        style={{marginLeft:"", width:"30%"}}
         type="text"
-        placeholder="Tìm kiếm theo tên sách"
-        onChange={(e) => setSearchTerm(e.target.value || "")}
+        placeholder="Search by book name..."
+        value={searchName}
+        onChange={(e) => setSearchName(e.target.value || "")}
       />
+      <input
+        style={{marginLeft:"5%", width:"30%"}}
+        type="text"
+        placeholder="Search by author..."
+        value={searchAuthor}
+        onChange={(e) => setSearchAuthor(e.target.value || "")}
+      />
+      <select
+        style={{marginLeft:"5%", width:"30%"}}
+        type="text"
+        placeholder="Search by category..."
+        value={searchCategory}
+        onChange={(e) => setSearchCategory(e.target.value || "")}
+      >
+        <option value="">All</option>
+        {categories?.map((category) => (
+          <option key={category.id} value={category.name}>
+            {category.name}
+          </option>
+        ))}
+      </select>
+      </div>
+      <Link to="/books/create"><button  className="btn btn-primary">Thêm mới</button></Link>
       <table className="table table-hover">
         <thead>
           <tr>
@@ -65,6 +114,7 @@ function BookList(props) {
             <th scope="col">Name</th>
             <th scope="col">Author</th>
             <th scope="col">Price</th>
+            <th scope="col">Category</th>
             <th scope="col">Action</th>
           </tr>
         </thead>

@@ -59,6 +59,16 @@
         "id": 3,
         "name": "Fiction"
       }
+    },
+    {
+      "id": "227",
+      "name": "A0523I1_Tôn Thất Diễn",
+      "author": "ádasdasd",
+      "price": "123",
+      "category": {
+        "id": 1,
+        "name": "Arts & Music"
+      }
     }
   ],
   "categories": [

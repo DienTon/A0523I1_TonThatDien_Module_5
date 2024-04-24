@@ -62,24 +62,27 @@ function BookCreate() {
   }
   return (
     <>
+    <h1 style={{textAlign: 'center'}}>Create book</h1>
+    <div style={{maxWidth: '60%', margin: '0 auto' }}>
       <Formik
         initialValues={book}
         onSubmit={createBook}
         validationSchema={Yup.object(validateBook)}
       >
         <Form className="form-group">
+        <div className="col-sm">
           <ErrorMessage name="id" component="p"></ErrorMessage>
-          Name: <Field name="name" />
+          Name: <Field className="form-control" name="name" />
           <br></br>
           <ErrorMessage name="name" component="p"></ErrorMessage>
-          Author: <Field name="author" />
+          Author: <Field className="form-control" name="author" />
           <br></br>
           <ErrorMessage name="author" component="p"></ErrorMessage>
-          Price: <Field name="price" />
+          Price: <Field className="form-control" name="price" />
           <br></br>
           <ErrorMessage name="price" component="p"></ErrorMessage>
           Category:
-          <Field as="select" name="category">
+          <Field className="form-control" as="select" name="category">
             {categories?.map((category) => (
               <option key={category.id} value={JSON.stringify(category)}>
                 {category.name}
@@ -88,8 +91,10 @@ function BookCreate() {
           </Field>
           <br></br>
           <button type="submit">Thêm mới</button>
+          </div>
         </Form>
       </Formik>
+      </div>
     </>
   );
 }

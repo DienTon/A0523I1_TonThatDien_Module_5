@@ -58,38 +58,59 @@ function BookEdit() {
 
   return (
     <>
-      <Formik initialValues={book} onSubmit={editBook} key={book.id}>
-        <Form>
-          {/* Các trường input */}
-          <Field type="hidden" name="id"/>
-          <label htmlFor="name">Name:</label>
-          <Field type="text" id="name" name="name" />
-          <br />
-          <label htmlFor="author">Author:</label>
-          <Field type="text" id="author" name="author" />
-          <br />
-          <label htmlFor="price">Price:</label>
-          <Field type="text" id="price" name="price" />
-          <br />
+    <h1 style={{textAlign: 'center'}}>Edit book</h1>
+      <div style={{ maxWidth: "60%", margin: "0 auto" }}>
+        <Formik initialValues={book} onSubmit={editBook} key={book.id}>
+          <Form>
+            <div className="col-sm">
+              {/* Các trường input */}
+              <Field className="form-control" type="hidden" name="id" />
+              <label htmlFor="name">Name:</label>
+              <Field
+                className="form-control"
+                type="text"
+                id="name"
+                name="name"
+              />
+              <br />
+              <label htmlFor="author">Author:</label>
+              <Field
+                className="form-control"
+                type="text"
+                id="author"
+                name="author"
+              />
+              <br />
+              <label htmlFor="price">Price:</label>
+              <Field
+                className="form-control"
+                type="text"
+                id="price"
+                name="price"
+              />
+              <br />
 
-          <label htmlFor="category">category:</label>
-          <Field
-            as="select"
-            id="category"
-            name="category"
-          >
-            <option value={book.category}>Select a category</option>
-            {categories?.map((category) => (
-              <option key={category.id} value={JSON.stringify(category)}>
-                {category.name}
-              </option>
-            ))}
-          </Field>
-          <br />
+              <label htmlFor="category">category:</label>
+              <Field
+                className="form-control"
+                as="select"
+                id="category"
+                name="category"
+              >
+                <option value={book.category}>Select a category</option>
+                {categories?.map((category) => (
+                  <option key={category.id} value={JSON.stringify(category)}>
+                    {category.name}
+                  </option>
+                ))}
+              </Field>
+              <br />
 
-          <button type="submit">Save Changes</button>
-        </Form>
-      </Formik>
+              <button type="submit">Save Changes</button>
+            </div>
+          </Form>
+        </Formik>
+      </div>
     </>
   );
 }
