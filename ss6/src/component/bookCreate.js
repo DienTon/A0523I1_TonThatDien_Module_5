@@ -7,26 +7,38 @@ import { toast } from "react-toastify";
 
 function BookCreate() {
   const [book, setBook] = useState();
+  const newId = Math.floor(Math.random() * 1000);
+  const [categories, setCategories] = useState();
   const navigate = useNavigate();
   const [isSubmit, setSubmit] = useState([]);
 
   useEffect(() => {
+    getAllCategories();
     //     Call DB để lấy duex liệu ban đầu cho chức năng update
     //     useParam để lấy id
     //   const student = await studentService.findById(id);
     setBook({
-      id: "",
+      id: newId.toString(),
       name: "",
       author: "",
-      price: 0,
+      price: "",
+      category: {},
     });
   }, []);
+
+  const getAllCategories = async () => {
+    try {
+      const foundCategory = await bookService.getAllCategories();
+      setCategories(foundCategory);
+    } catch (error) {
+      console.error("Error fetching category:", error);
+    }
+  };
 
   const validateBook = {
     id: Yup.number()
       .min(0, "Id không được nh hơn 0")
-      .max(10000000000, "Id không được lớn hơn 10000000000")
-      .required("Id không ược để trống"),
+      .max(10000000000, "Id không được lớn hơn 10000000000"),
     name: Yup.string()
       .min(4, "Tên không được nhỏ hơn 4 ký tự")
       .max(100, "Tên không đươc lớn hơn 100 ký tự"),
@@ -38,6 +50,7 @@ function BookCreate() {
 
   const createBook = async (values) => {
     setSubmit(true);
+    values.category = JSON.parse(values.category);
     console.log(values);
     setSubmit(false);
     await bookService.addNewBooks(values);
@@ -55,8 +68,6 @@ function BookCreate() {
         validationSchema={Yup.object(validateBook)}
       >
         <Form className="form-group">
-          Id: <Field name="id" />
-          <br></br>
           <ErrorMessage name="id" component="p"></ErrorMessage>
           Name: <Field name="name" />
           <br></br>
@@ -67,6 +78,15 @@ function BookCreate() {
           Price: <Field name="price" />
           <br></br>
           <ErrorMessage name="price" component="p"></ErrorMessage>
+          Category:
+          <Field as="select" name="category">
+            {categories?.map((category) => (
+              <option key={category.id} value={JSON.stringify(category)}>
+                {category.name}
+              </option>
+            ))}
+          </Field>
+          <br></br>
           <button type="submit">Thêm mới</button>
         </Form>
       </Formik>

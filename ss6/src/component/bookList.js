@@ -69,12 +69,13 @@ function BookList(props) {
           </tr>
         </thead>
         <tbody>
-          {bookList.map((book) => (
+          {bookList.map((book,index) => (
             <tr key={book.id}>
-              <th scope="row">{book.id}</th>
+              <th scope="row">{index+1}</th>
               <td>{book.name}</td>
               <td>{book.author}</td>
               <td>{book.price}</td>
+              <td>{book.category.name}</td>
               <td>
                 <Link to={"/books/edit/" + book.id}>
                   <button className="btn btn-primary">Edit</button>

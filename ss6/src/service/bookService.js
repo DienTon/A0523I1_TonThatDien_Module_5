@@ -9,6 +9,15 @@ export const getAllBooks = async () => {
     console.error(error);
   }
 };
+export const getAllCategories = async () => {
+  try {
+    const res = await axios.get("http://localhost:3002/categories");
+    console.log(res.data);
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export const addNewBooks = async (book) => {
   try {
