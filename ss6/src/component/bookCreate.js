@@ -51,6 +51,7 @@ function BookCreate() {
   const createBook = async (values) => {
     setSubmit(true);
     values.category = JSON.parse(values.category);
+    values.price = Number.parseInt(values.price);
     console.log(values);
     setSubmit(false);
     await bookService.addNewBooks(values);

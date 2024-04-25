@@ -1,3 +1,16 @@
-input{
-  align-items: center;
-}
+.pagination {
+    display: flex;
+    justify-content: flex-end; /* Chuyển phần tử sang phía bên phải */
+  }
+  
+  .pagination ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+  }
+  
+  .pagination ul li {
+    margin-left: 10px; /* Đặt khoảng cách giữa các phần tử */
+  }
+  

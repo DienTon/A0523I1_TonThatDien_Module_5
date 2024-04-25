@@ -4,6 +4,7 @@ import * as bookService from "../service/bookService";
 import Modal from "react-modal";
 import axios from "axios";
 import { toast } from "react-toastify";
+import ReactPaginate from "react-paginate";
 
 function BookList(props) {
   const [bookList, setBookList] = useState([]);
@@ -12,6 +13,9 @@ function BookList(props) {
   const [searchName, setSearchName] = useState("");
   const [searchAuthor, setSearchAuthor] = useState("");
   const [searchCategory, setSearchCategory] = useState("");
+  const [totalPages, setTotalPages] = useState("");
+  const [limitItemsPerPage, setLimitItemsPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
   const customStyles = {
     content: {
       top: "30%",
@@ -27,29 +31,36 @@ function BookList(props) {
   useEffect(() => {
     getAll();
     getAllCategories();
-  }, [searchName, searchAuthor, searchCategory]);
+    console.log(totalPages);
+  }, [searchName, searchAuthor, searchCategory, currentPage]);
 
   const getAll = async () => {
-    const response = await bookService.getAllBooks();
-    const result = response.filter((book) => {
-      // Kiểm tra tên sách
-      const matchesName =
-        searchName === "" ||
-        book.name.toLowerCase().includes(searchName.toLowerCase());
-      // Kiểm tra tác giả
-      const matchesAuthor =
-        searchAuthor === "" ||
-        book.author.toLowerCase().includes(searchAuthor.toLowerCase());
-      // Kiểm tra thể loại sách
-      const matchesCategory =
-        searchCategory === "" ||
-        book.category.name.toLowerCase().includes(searchCategory.toLowerCase());
+    const response = await bookService.getAllBooks(currentPage,limitItemsPerPage);
+    if (response && response.data) {
+      setTotalPages(response.data.pages); //set so trang
+      const result = response.data.data.filter((book) => {
+        // Kiểm tra tên sách
+        const matchesName =
+          searchName === "" ||
+          book.name.toLowerCase().includes(searchName.toLowerCase());
+        // Kiểm tra tác giả
+        const matchesAuthor =
+          searchAuthor === "" ||
+          book.author.toLowerCase().includes(searchAuthor.toLowerCase());
+        // Kiểm tra thể loại sách
+        const matchesCategory =
+          searchCategory === "" ||
+          book.category.name
+            .toLowerCase()
+            .includes(searchCategory.toLowerCase());
 
-      // Trả về true nếu tất cả các điều kiện đều đúng
-      return matchesName && matchesAuthor && matchesCategory;
-    });
-    setBookList(result);
+        // Trả về true nếu tất cả các điều kiện đều đúng
+        return matchesName && matchesAuthor && matchesCategory;
+      });
+      setBookList(result);
+    }
   };
+
   const getAllCategories = async () => {
     try {
       const foundCategory = await bookService.getAllCategories();
@@ -72,41 +83,47 @@ function BookList(props) {
     setBookDelete(book);
     setIsOpen(true);
   };
-
+  const handlePageClick = (selectedPage) => {
+    // Xử lý sự kiện khi người dùng chuyển trang
+    console.log(`Selected page: ${selectedPage.selected +1}`);
+    setCurrentPage(selectedPage.selected +1);
+  };
   return (
     <>
-    <h1 style={{textAlign: 'center'}}>List book</h1>
-    <div style={{marginBottom:'20px',marginTop:'20px'}}>
-      <input
-        style={{marginLeft:"", width:"30%"}}
-        type="text"
-        placeholder="Search by book name..."
-        value={searchName}
-        onChange={(e) => setSearchName(e.target.value || "")}
-      />
-      <input
-        style={{marginLeft:"5%", width:"30%"}}
-        type="text"
-        placeholder="Search by author..."
-        value={searchAuthor}
-        onChange={(e) => setSearchAuthor(e.target.value || "")}
-      />
-      <select
-        style={{marginLeft:"5%", width:"30%"}}
-        type="text"
-        placeholder="Search by category..."
-        value={searchCategory}
-        onChange={(e) => setSearchCategory(e.target.value || "")}
-      >
-        <option value="">All</option>
-        {categories?.map((category) => (
-          <option key={category.id} value={category.name}>
-            {category.name}
-          </option>
-        ))}
-      </select>
+      <h1 style={{ textAlign: "center" }}>List book</h1>
+      <div style={{ marginBottom: "20px", marginTop: "20px" }}>
+        <input
+          style={{ marginLeft: "", width: "30%" }}
+          type="text"
+          placeholder="Search by book name..."
+          value={searchName}
+          onChange={(e) => setSearchName(e.target.value || "")}
+        />
+        <input
+          style={{ marginLeft: "5%", width: "30%" }}
+          type="text"
+          placeholder="Search by author..."
+          value={searchAuthor}
+          onChange={(e) => setSearchAuthor(e.target.value || "")}
+        />
+        <select
+          style={{ marginLeft: "5%", width: "30%" }}
+          type="text"
+          placeholder="Search by category..."
+          value={searchCategory}
+          onChange={(e) => setSearchCategory(e.target.value || "")}
+        >
+          <option value="">All</option>
+          {categories?.map((category) => (
+            <option key={category.id} value={category.name}>
+              {category.name}
+            </option>
+          ))}
+        </select>
       </div>
-      <Link to="/books/create"><button  className="btn btn-primary">Thêm mới</button></Link>
+      <Link to="/books/create">
+        <button className="btn btn-primary">Thêm mới</button>
+      </Link>
       <table className="table table-hover">
         <thead>
           <tr>
@@ -119,9 +136,9 @@ function BookList(props) {
           </tr>
         </thead>
         <tbody>
-          {bookList.map((book,index) => (
+          {bookList.map((book, index) => (
             <tr key={book.id}>
-              <th scope="row">{index+1}</th>
+              <th scope="row">{index + 1}</th>
               <td>{book.name}</td>
               <td>{book.author}</td>
               <td>{book.price}</td>
@@ -141,6 +158,25 @@ function BookList(props) {
           ))}
         </tbody>
       </table>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={totalPages}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        containerClassName="pagination"
+        activeClassName="active"
+      />
       <Modal
         isOpen={modalIsOpen}
         // onAfterOpen={afterOpenModal}

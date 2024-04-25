@@ -1,10 +1,12 @@
 import axios from "axios";
+import ReactPaginate from 'react-paginate';
 
-export const getAllBooks = async () => {
+
+export const getAllBooks = async (page,limit) => {
   try {
-    const res = await axios.get("http://localhost:3002/books");
-    console.log(res.data);
-    return res.data;
+    const res = await axios.get(`http://localhost:3002/books?_page=${page}&_per_page=${limit}`);
+    console.log(res);
+    return res;
   } catch (error) {
     console.error(error);
   }
