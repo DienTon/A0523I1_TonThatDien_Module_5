@@ -33,7 +33,8 @@ function BookList(props) {
     getAllCategories();
     console.log(totalPages);
   }, [searchName, searchAuthor, searchCategory, currentPage]);
-
+  
+//get all book & search
   const getAll = async () => {
     const response = await bookService.getAllBooks(currentPage,limitItemsPerPage);
     if (response && response.data) {
@@ -69,7 +70,7 @@ function BookList(props) {
       console.error("Error fetching category:", error);
     }
   };
-
+//delete
   const deleteBooks = async () => {
     const isSuccess = await bookService.deleteBooks(bookDelete.id);
     if (isSuccess) {

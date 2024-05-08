@@ -1,0 +1,124 @@
+{
+  "books": [
+    {
+      "id": "2",
+      "name": "To Kill a Mockingbird",
+      "date": "20/12/2022",
+      "soLuong": 10,
+      "category": {
+        "id": 1,
+        "name": "Arts & Music"
+      }
+    },
+    {
+      "id": "3",
+      "name": "A0523I1_Tôn Thất Diễn",
+      "date": "20/12/2022",
+      "soLuong": 10,
+      "category": {
+        "id": 1,
+        "name": "Arts & Music"
+      }
+    },
+    {
+      "id": "4",
+      "name": "Pride and Prejudice",
+      "date": "20/12/2022",
+      "soLuong": 10,
+      "category": {
+        "id": 2,
+        "name": "Computers & Tech"
+      }
+    },
+    {
+      "id": "8",
+      "name": "A0523I1_Tôn Thất ",
+      "date": "20/12/2022",
+      "soLuong": 10,
+      "category": {
+        "id": 5,
+        "name": "Horror"
+      }
+    },
+    {
+      "id": 69992111,
+      "name": "A0523I1_Tôn Thất Diễn",
+      "soLuong": 19,
+      "date": "2024-04-10",
+      "category": {
+        "id": "5",
+        "name": "Horror"
+      },
+      "price": null
+    },
+    {
+      "id": 123,
+      "name": "A0523I1_Tôn Thất Diễn",
+      "soLuong": 19,
+      "date": "2024-04-10",
+      "category": {
+        "id": "4",
+        "name": "History"
+      },
+      "price": null
+    },
+    {
+      "id": 123,
+      "name": "namqee",
+      "soLuong": 123,
+      "date": "2024-04-22",
+      "category": {
+        "id": "2",
+        "name": "Computers & Tech"
+      }
+    },
+    {
+      "id": 45148,
+      "name": "A0523I1_Tôn Thất Diễn",
+      "soLuong": 1,
+      "date": "2024-04-09",
+      "category": {
+        "id": "2",
+        "name": "Computers & Tech"
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Arts & Music"
+    },
+    {
+      "id": "2",
+      "name": "Computers & Tech"
+    },
+    {
+      "id": "3",
+      "name": "Fiction"
+    },
+    {
+      "id": "4",
+      "name": "History"
+    },
+    {
+      "id": "5",
+      "name": "Horror"
+    },
+    {
+      "id": "6",
+      "name": "Romance"
+    },
+    {
+      "id": "7",
+      "name": "Sci-Fi"
+    },
+    {
+      "id": "8",
+      "name": "Thriller"
+    },
+    {
+      "id": "9",
+      "name": "Young Adult"
+    }
+  ]
+}
